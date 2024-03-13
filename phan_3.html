@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Liệt kê tất cả các dãy con có độ dài từ 1 đến 3 của dãy số {1, 2, 3, 4}</h2>
+
+<button onclick="listSubarrays()">Tính toán</button>
+
+<p id="result"></p>
+
+<script>
+function listSubarrays() {
+    var array = [1, 2, 3, 4];
+    var result = [];
+
+    // Tạo ra tất cả các dãy con có thể có
+    for (var i = 0; i < array.length; i++) {
+        for (var j = i; j < array.length; j++) {
+            var subarray = array.slice(i, j + 1);
+            if (subarray.length >= 1 && subarray.length <= 3) {
+                result.push(subarray);
+            }
+        }
+    }
+
+    // Hiển thị kết quả
+    document.getElementById("result").innerHTML = "Các dãy con có độ dài từ 1 đến 3 là:<br>" + result.map(subarray => subarray.join(", ")).join("<br>");
+}
+</script>
+
+</body>
+</html>

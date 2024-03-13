@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Tìm số lượng số nguyên dương có 3 chữ số khác nhau</h2>
+
+<button onclick="calculate()">Tính toán</button>
+
+<p id="result"></p>
+
+<script>
+function calculate() {
+    var firstDigitOptions = 9; // Chữ số đầu tiên từ 1 đến 9
+    var secondDigitOptions = 9; // Chữ số thứ hai từ 0 đến 9, trừ chữ số đầu tiên
+    var thirdDigitOptions = 8; // Chữ số thứ ba từ 0 đến 9, trừ hai chữ số đã chọn
+
+    var total = firstDigitOptions * secondDigitOptions * thirdDigitOptions;
+
+    document.getElementById("result").innerHTML = "Số lượng số nguyên dương có 3 chữ số khác nhau là: " + total;
+}
+</script>
+
+</body>
+</html>

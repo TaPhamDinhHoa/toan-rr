@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Ma trận chi phí</h2>
+
+<table id="costMatrix"></table>
+
+<h2>Kết quả: <span id="result"></span></h2>
+
+<button onclick="printResult()">In kết quả</button>
+
+<script>
+// Giả sử đây là ma trận chi phí của bài toán
+var costMatrix = [
+    [0, 10, 15, 20],
+    [10, 0, 35, 25],
+    [15, 35, 0, 30],
+    [20, 25, 30, 0]
+];
+
+// Số lượng thành phố
+var N = costMatrix.length;
+
+// Hàm để tìm giá trị nhỏ nhất trong một mảng
+function minOfArray(arr) {
+    return Math.min.apply(null, arr);
+}
+
+// Hàm để tìm hành trình ngắn nhất
+function travellingSalesmanProblem() {
+    var visited = new Array(N);
+    visited.fill(false);
+    visited[0] = true;
+    var ans = Infinity;
+    ans = tsp(costMatrix, visited, 0, 1, 0, ans);
+    return ans;
+}
+
+// Hàm để thực hiện thuật toán TSP
+function tsp(costMatrix, visited, currPos, count, cost, ans) {
+    if (count == N && costMatrix[currPos][0]) {
+        ans = Math.min(ans, cost + costMatrix[currPos][0]);
+        return ans;
+    }
+    for (var i = 0; i < N; i++) {
+        if (!visited[i] && costMatrix[currPos][i]) {
+            visited[i] = true;
+            ans = tsp(costMatrix, visited, i, count + 1, cost + costMatrix[currPos][i], ans);
+            visited[i] = false;
+        }
+    }
+    return ans;
+}
+
+// Hàm để in kết quả
+function printResult() {
+    var result = travellingSalesmanProblem();
+    document.getElementById("result").innerHTML = "Chi phí nhỏ nhất: " + result;
+}
+
+</script>
+
+</body>
+</html>
